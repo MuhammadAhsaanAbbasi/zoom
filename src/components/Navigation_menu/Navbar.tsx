@@ -19,9 +19,9 @@ const Navbar = () => {
         <Image
         src={"/icons/loom.svg"}
         alt="LOOM LOGO"
-        height={75}
-        width={75}
-        className='cursor-pointer size-[75px] font-semibold max-sm:hidden'
+        height={70}
+        width={80}
+        className='cursor-pointer size-[80px] font-semibold max-sm:hidden'
         />
       </Link>
       <div className='flex-between gap-5'>

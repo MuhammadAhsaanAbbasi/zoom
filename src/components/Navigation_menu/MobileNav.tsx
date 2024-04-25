@@ -36,9 +36,9 @@ const MobileNav = () => {
                         <Image
                             src={"/icons/loom.svg"}
                             alt="LOOM LOGO"
-                            height={75}
-                            width={75}
-                            className='cursor-pointer size-[75px] max-sm:size-10'
+                            height={70}
+                            width={80}
+                            className='cursor-pointer size-[80px] max-sm:size-10'
                         />
                     </Link>
                     <div className='flex h-[calc(100vh-72px)] flex-col justify-between overflow-y-auto'>
