@@ -5,9 +5,9 @@ import MobileNav from './MobileNav'
 
 const Navbar = () => {
   return (
-    <nav className='flex flex-between bg-dark-2 fixed w-full px-6 py-4 lg:px-10'>
+    <nav className='flex flex-between bg-dark-2 fixed w-full px-6 py-4 lg:px-10 z-50'>
       <Link href={"/"}
-      className='flex items-center'
+      className='flex items-center gap-2'
       >
         <Image
         src={"/icons/logo.svg"}
@@ -16,7 +16,13 @@ const Navbar = () => {
         width={40}
         className='cursor-pointer max-sm:size-10'
         />
-        <p className="text-[30px] font-semibold max-sm:hidden">LOOM</p>
+        <Image
+        src={"/icons/loom.svg"}
+        alt="LOOM LOGO"
+        height={75}
+        width={75}
+        className='cursor-pointer size-[75px] font-semibold max-sm:hidden'
+        />
       </Link>
       <div className='flex-between gap-5'>
         <p>Custom Auth</p>
