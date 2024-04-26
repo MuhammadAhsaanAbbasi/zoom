@@ -28,14 +28,6 @@ const Navbar = () => {
       <div className='flex-between gap-5'>
         <UserButton
           afterSignOutUrl='/'
-          appearance={{
-            elements: {
-              button: {
-                width: '40px', // Set the width to 100px
-                height: '40px', // Set the height to 150px
-              },
-            },
-          }}
         />
         <MobileNav />
       </div>
