@@ -6,7 +6,7 @@ import { UserButton } from '@clerk/nextjs'
 
 const Navbar = () => {
   return (
-    <nav className='flex flex-between bg-dark-2 fixed w-full px-6 py-4 lg:px-10 z-50'>
+    <nav className='flex flex-between h-[72px] bg-dark-2 fixed w-full px-6 py-4 lg:px-10 z-40'>
       <Link href={"/"}
         className='flex items-center gap-2'
       >
@@ -27,8 +27,7 @@ const Navbar = () => {
       </Link>
       <div className='flex-between gap-5'>
         <UserButton
-          afterSignOutUrl='/'
-        />
+          afterSignOutUrl='/'/>
         <MobileNav />
       </div>
     </nav>

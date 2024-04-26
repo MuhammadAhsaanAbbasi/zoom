@@ -9,7 +9,7 @@ import { usePathname } from 'next/navigation'
 const Sidebar = () => {
     const pathname = usePathname()
   return (
-    <section className='sticky top-0 left-0 bg-dark-2 flex h-screen w-fit flex-col pt-32 p-6 justify-between max-sm:hidden lg:w-[260px]'>
+    <section className='sticky top-0 left-0 bg-dark-2 flex h-screen w-fit flex-col pt-28 p-6 justify-between max-sm:hidden lg:w-[260px]'>
         <div className='flex flex-1 flex-col gap-4'>
             {SideBarLinks.map((link) => {
                 const isActive = pathname === link.path || pathname.startsWith(`${link.path}/`);
