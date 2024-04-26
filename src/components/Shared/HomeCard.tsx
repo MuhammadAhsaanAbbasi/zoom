@@ -14,6 +14,7 @@ const HomeCard = ({img, title, description, className, handleClick}: HomeCardPro
   return (
     <div className={cn('flex flex-col justify-between bg-orange-1 w-full min-h-[260px] xl:max-w-[260px] rounded-[14px] cursor-pointer p-5', className)}
     onClick={handleClick}
+    
     >
       <div className='flex-center glassmorphism size-14 rounded-xl'>
         <Image
@@ -25,8 +26,8 @@ const HomeCard = ({img, title, description, className, handleClick}: HomeCardPro
       </div>
 
       <div className='flex flex-col gap-2'>
-        <h1 className='text-2xl font-medium'>{title}</h1>
-        <h3>{description}</h3>
+        <h1 className='text-2xl font-semibold'>{title}</h1>
+        <h3 className='text-lg font-normal'>{description}</h3>
       </div>
     </div>
   )
