@@ -15,8 +15,8 @@ const MeetingList = () => {
   const client = useStreamVideoClient()
   const [values, setValues] = useState({
     dateTime: new Date(),
-    description: " ",
-    link: " ",
+    description: "",
+    link: "",
   })
 
   const [callDetails, setCallDetails] = useState<Call>()
@@ -38,7 +38,7 @@ const MeetingList = () => {
           }
         },
       })
-    
+    console.log("call created", call)
     setCallDetails(call);
 
     if(!values.description){
