@@ -3,7 +3,7 @@ import React from 'react'
 
 interface IProps {
     params: {
-        id: number
+        id: string
     }
 }
 
