@@ -1,3 +1,4 @@
+import MeetingPageById from '@/components/Meeting/MeetingPageById'
 import React from 'react'
 
 interface IProps {
@@ -8,7 +9,7 @@ interface IProps {
 
 const MeetingPage = ({params: {id}}: IProps) => {
   return (
-    <div>MeetingPage { id }</div>
+    <MeetingPageById id={id} />
   )
 }
 
