@@ -2,7 +2,6 @@
 
 import { currentUser } from '@clerk/nextjs/server'
 import { StreamClient } from '@stream-io/node-sdk'
-import React from 'react'
 
 const apikey = process.env.NEXT_PUBLIC_STREAM_API_KEY
 const secretkey = process.env.STREAM_SECRET_KEY
