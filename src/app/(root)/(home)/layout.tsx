@@ -7,6 +7,9 @@ import { ReactNode } from 'react';
 export const metadata: Metadata = {
   title: 'LOOM',
   description: 'A workspace for your team, powered by Stream Chat and Clerk.',
+  icons: {
+    icon: "/icons/logo.svg",
+  },
 };
 
 
