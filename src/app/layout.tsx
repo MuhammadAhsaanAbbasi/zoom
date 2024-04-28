@@ -3,8 +3,9 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "@/components/ui/toaster";
-
 const inter = Inter({ subsets: ["latin"] });
+
+import "@stream-io/video-react-sdk/dist/css/styles.css";
 
 export const metadata: Metadata = {
   title: "LOOM",
