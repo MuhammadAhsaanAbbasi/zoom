@@ -15,7 +15,7 @@ interface MeetingModelProps {
   isOpen: boolean;
   onClose: () => void;
   title: string;
-  className: string;
+  className?: string;
   children?: React.ReactNode;
   handleClick?: () => void;
   buttonText?: string;
@@ -38,6 +38,7 @@ const MeetingModel = ({isOpen, onClose, title, className, children,
             </div>
           )}
           <h2 className={cn('text-3xl font-semibold leading-10', className)}>{title}</h2>
+          {children}
           <Button
           className='bg-blue-1 focus-visible:ring-0
           focus-visible:ring-offset-0'
