@@ -35,7 +35,10 @@ export default function RootLayout({
           },
         }}
       >
-        <body className={`${inter.className} bg-dark-1 text-white`}>{children}</body>
+        <body className={`${inter.className} bg-dark-1 text-white`}>
+          {children}
+          
+          </body>
       </ClerkProvider>
     </html>
   );
