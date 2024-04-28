@@ -42,6 +42,10 @@
   height: 40px;
 }
 
+.str-video__video-preview-container {
+  @apply w-[640px] h-[360px] flex justify-center items-center
+}
+
 .glassmorphism {
   background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(4px);
@@ -113,3 +117,4 @@
     width: 100%;
   }
 }
+

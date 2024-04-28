@@ -24,22 +24,22 @@ export default function RootLayout({
       <ClerkProvider
         appearance={{
           layout: {
-            logoImageUrl: "/icons/loom-logo.svg",
-            socialButtonsVariant: "iconButton"
+            socialButtonsVariant: "iconButton",
+            logoImageUrl: "/icons/yoom-logo.svg",
           },
           variables: {
             colorText: "#fff",
             colorPrimary: "#0E78F9",
-            colorBackground: "#1c1f2e",
-            colorInputBackground: "#252a41",
+            colorBackground: "#1C1F2E",
+            colorInputBackground: "#252A41",
             colorInputText: "#fff",
           },
         }}
       >
-        <body className={`${inter.className} bg-dark-1 text-white`}>
-          {children}
+        <body className={`${inter.className} bg-dark-2 text-white`}>
           <Toaster />
-          </body>
+          {children}
+        </body>
       </ClerkProvider>
     </html>
   );
