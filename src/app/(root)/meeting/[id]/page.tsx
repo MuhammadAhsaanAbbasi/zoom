@@ -8,9 +8,7 @@ interface IProps {
 }
 
 const MeetingPage = ({params: {id}}: IProps) => {
-  return (
-    <MeetingPageById id={id} />
-  )
+  return <MeetingPageById id={id} />
 }
 
 export default MeetingPage

@@ -58,7 +58,6 @@
   filter: invert(1);
 }
 
-
 .cl-userButtonPopoverActionButtonIcon {
   color: white;
 }
@@ -69,6 +68,10 @@
 .cl-dividerLine {
   background: #252a41;
   height: 2px;
+}
+
+.cl-socialButtonsIconButton {
+  border: 3px solid #565761;
 }
 
 .cl-internal-wkkub3 {

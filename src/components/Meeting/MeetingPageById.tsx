@@ -13,18 +13,18 @@ const MeetingPageById = ({ id }: { id: string }) => {
 
     const {call, isCallLoading} = useGetCallById(id)
 
-    if (!isLoaded || !isCallLoading) return <Loader />
+    if (!isLoaded || isCallLoading) return <Loader />
   return (
     <main className="h-screen w-full">
-        <StreamCall call={call}>
-            <StreamTheme>
-                {!isSetUpComplete ? (
-                    <MeetingSetUp />
-                ) : (
-                    <MeetingRoom />
-                )}
-            </StreamTheme>
-        </StreamCall>
+      <StreamCall call={call}>
+        <StreamTheme>
+        {!isSetUpComplete ? (
+          <MeetingSetUp setIsSetUpComplete={setIsSetUpComplete} />
+        ) : (
+          <MeetingRoom />
+        )}
+        </StreamTheme>
+      </StreamCall>
     </main>
   )
 }
