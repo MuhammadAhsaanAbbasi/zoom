@@ -3,7 +3,7 @@
 import { Call, CallRecording } from '@stream-io/video-react-sdk';
 
 import { useGetCalls } from '@/hooks/useGetCall'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import MeetingCard from '../Meeting/MeetingCard'
 import { useRouter } from 'next/navigation';
 import Loader from './Loader';
@@ -12,6 +12,25 @@ const CallList = ({ type }: { type: "ended" | "upcoming" | "recordings" }) => {
     const router = useRouter()
     const { endedCalls, upcomingCalls, CallRecordings, isLoading } = useGetCalls()
     const [recording, setRecordings] = useState<CallRecording[]>([])
+
+    useEffect(() => {
+        const fetchRecordings = async () => {
+            try {
+                const callData = await Promise.all(CallRecordings.map(
+                    (meeting) => meeting.queryRecordings()))
+                
+                    const recordings = callData
+                        .filter(call => call.recordings.length > 0)
+                        .flatMap(call => call.recordings)
+                
+                setRecordings(recordings)
+            } catch (error) {
+                console.error(error)
+            }
+        }
+
+        if(type === "recordings") fetchRecordings()
+    }, [type, CallRecordings]);
 
     const getCalls = () => {
         switch (type) {
@@ -50,8 +69,8 @@ const CallList = ({ type }: { type: "ended" | "upcoming" | "recordings" }) => {
                 key={(meeting as Call).id}
                     icon={type === "ended" ? "/icons/previous.svg" : type === "upcoming" ? "/icons/upcoming.svg" : "/icons/recordings.svg"}
                     title={
-                        (meeting as Call).state?.custom.description.substring(0, 25) || 
-                        (meeting as CallRecording).filename.substring(0, 25) || 
+                        (meeting as Call).state?.custom?.description?.substring(0, 25) || 
+                        (meeting as CallRecording).filename?.substring(0, 25) || 
                         "No Description"
                     }
                     date={
