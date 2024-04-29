@@ -4,7 +4,7 @@ import { StreamCall, StreamTheme } from "@stream-io/video-react-sdk"
 import { useState } from "react"
 import MeetingSetUp from "./MeetingSetUp"
 import MeetingRoom from "./MeetingRoom"
-import { useGetCallById } from "@/hooks/useGetCallById"
+import { useGetCallById } from "../../../hooks/useGetCallById"
 import Loader from "../Shared/Loader"
 
 const MeetingPageById = ({ id }: { id: string }) => {

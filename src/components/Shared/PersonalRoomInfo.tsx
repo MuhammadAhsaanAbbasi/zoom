@@ -4,7 +4,7 @@ import React from 'react'
 import { Button } from '../ui/button'
 import { toast } from '../ui/use-toast'
 import { useStreamVideoClient } from '@stream-io/video-react-sdk'
-import { useGetCallById } from '@/hooks/useGetCallById'
+import { useGetCallById } from '../../../hooks/useGetCallById'
 import { useRouter } from 'next/navigation'
 
 const Table = ({title, description}: {title: string, description: string}) => (

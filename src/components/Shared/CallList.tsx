@@ -2,7 +2,7 @@
 
 import { Call, CallRecording } from '@stream-io/video-react-sdk';
 
-import { useGetCalls } from '@/hooks/useGetCall'
+import { useGetCalls } from '../../../hooks/useGetCall'
 import React, { useEffect, useState } from 'react'
 import MeetingCard from '../Meeting/MeetingCard'
 import { useRouter } from 'next/navigation';
