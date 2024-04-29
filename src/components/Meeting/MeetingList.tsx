@@ -9,6 +9,7 @@ import { toast } from '../ui/use-toast'
 import { Label } from '../ui/label'
 import { Textarea } from '../ui/textarea'
 import ReactDatePicker from "react-datepicker"
+import { Input } from '../ui/input'
 
 const MeetingList = () => {
   const router = useRouter()
@@ -102,7 +103,7 @@ const MeetingList = () => {
         handleClick={() => router.push("/recordings")}
       />
 
-{!callDetail ? (
+      {!callDetail ? (
         <MeetingModel
           isOpen={meetingState === 'isScheduleMeeting'}
           onClose={() => setMeetingState(undefined)}
@@ -111,33 +112,33 @@ const MeetingList = () => {
         >
           <div className="flex flex-col gap-2.5">
             <Label className="text-base font-normal leading-[22.4px] text-sky-2"
-            htmlFor="message"
+              htmlFor="message"
             >
               Add a description
             </Label>
-            <Textarea 
-            placeholder="Type your message here." 
-            id="message"
-            className='w-full text-sky-2 rounded border-none bg-dark-3 focus-visible:ring-0 focus-visible:ring-offset-0'
-            onChange={(e) => setValues({ ...values, description: e.target.value })}
+            <Textarea
+              placeholder="Type your message here."
+              id="message"
+              className='w-full text-sky-2 rounded border-none bg-dark-3 focus-visible:ring-0 focus-visible:ring-offset-0'
+              onChange={(e) => setValues({ ...values, description: e.target.value })}
             />
           </div>
 
           <div className='flex flex-col gap-2.5'>
-          <Label className="text-base font-normal leading-[22.4px] text-sky-2"
-            htmlFor="dateTime"
+            <Label className="text-base font-normal leading-[22.4px] text-sky-2"
+              htmlFor="dateTime"
             >
               Select Date & Time
             </Label>
-            <ReactDatePicker 
-            selected={values.dateTime}
-            onChange={(date) => setValues({ ...values, dateTime: date! })}
-            showTimeSelect
-            timeFormat='HH:mm'
-            timeIntervals={15}
-            timeCaption='time'
-            dateFormat="MMMM d, yyyy h:mm aa"
-            className='w-full bg-dark-3 p-2 focus:outline-none'
+            <ReactDatePicker
+              selected={values.dateTime}
+              onChange={(date) => setValues({ ...values, dateTime: date! })}
+              showTimeSelect
+              timeFormat='HH:mm'
+              timeIntervals={15}
+              timeCaption='time'
+              dateFormat="MMMM d, yyyy h:mm aa"
+              className='w-full bg-dark-3 p-2 focus:outline-none'
             />
           </div>
         </MeetingModel>
@@ -160,6 +161,20 @@ const MeetingList = () => {
         />
       )}
 
+      <MeetingModel
+        isOpen={meetingState === "isJoinMeeting"}
+        onClose={() => setMeetingState(undefined)}
+        title={"Type the Link Here"}
+        className='text-center'
+        buttonText='Join Meeting'
+        handleClick={() => router.push(values.link)}
+      >
+        <Input
+        placeholder="Write the link here"
+        className='border-none bg-dark-3 focus-visible:ring-0 focus-visible:ring-offset-0'
+        onChange={(e) => setValues({ ...values, link: e.target.value })}
+        />
+      </MeetingModel>
 
       <MeetingModel
         isOpen={meetingState === "isInstanceMeeting"}

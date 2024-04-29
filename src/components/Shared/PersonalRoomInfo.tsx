@@ -3,6 +3,10 @@ import { useUser } from '@clerk/nextjs'
 import React from 'react'
 import { Button } from '../ui/button'
 import { toast } from '../ui/use-toast'
+import { useStreamVideoClient } from '@stream-io/video-react-sdk'
+import { useGetCallById } from '@/hooks/useGetCallById'
+import { Router } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 
 const Table = ({title, description}: {title: string, description: string}) => (
   <div className='flex flex-col items-start gap-3 xl:flex-row'>
@@ -12,11 +16,25 @@ const Table = ({title, description}: {title: string, description: string}) => (
 )
 
 const PersonalRoomInfo = () => {
+  const router = useRouter()
     const { user } = useUser()
     const meetingId = user?.id
     const meetingLink = `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${meetingId}?personal=true`
-    const StartRoom = () => {
-        console.log('start room')
+
+    const client = useStreamVideoClient()
+    const {call} = useGetCallById(meetingId!)
+    const StartRoom = async () => {
+        if(!client || !user) return
+
+        if(!call){
+          const newCall = client.call("default", meetingId!)
+          await newCall.getOrCreate({
+            data: {
+              starts_at: new Date().toISOString()
+            }
+          })
+        }
+        router.push(`/meeting/${meetingId}?personal=true`)
     }
     
   return (
@@ -34,7 +52,7 @@ const PersonalRoomInfo = () => {
         onClick={() => {
           navigator.clipboard.writeText(meetingLink);
           toast({
-            title: "Invitation Link",
+            title: "Copy Link",
             description: "Invitation Link Copy",
           })
         }}

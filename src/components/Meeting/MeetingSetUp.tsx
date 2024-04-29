@@ -15,6 +15,13 @@ const MeetingSetup = ({
 }: {
   setIsSetupComplete: (value: boolean) => void;
 }) => {
+  // https://getstream.io/video/docs/react/guides/call-and-participant-state/#call-state
+  const { useCallEndedAt, useCallStartsAt } = useCallStateHooks();
+  const callStartsAt = useCallStartsAt();
+  const callEndedAt = useCallEndedAt();
+  const callTimeNotArrived =
+    callStartsAt && new Date(callStartsAt) > new Date();
+  const callHasEnded = !!callEndedAt;
 
   const call = useCall();
 
@@ -37,6 +44,20 @@ const MeetingSetup = ({
     }
   }, [isMicCamToggled, call.camera, call.microphone]);
 
+  if (callTimeNotArrived)
+    return (
+      <Alert
+        title={`Your Meeting has not started yet. It is scheduled for ${callStartsAt.toLocaleString()}`}
+      />
+    );
+
+  if (callHasEnded)
+    return (
+      <Alert
+        title="The call has been ended by the host"
+        iconUrl="/icons/call-ended.svg"
+      />
+    );
 
   return (
     <div className="flex flex-col justify-center items-center h-screen w-full gap-3 text-white">
