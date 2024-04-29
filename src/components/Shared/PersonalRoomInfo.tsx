@@ -5,7 +5,6 @@ import { Button } from '../ui/button'
 import { toast } from '../ui/use-toast'
 import { useStreamVideoClient } from '@stream-io/video-react-sdk'
 import { useGetCallById } from '@/hooks/useGetCallById'
-import { Router } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
 const Table = ({title, description}: {title: string, description: string}) => (
