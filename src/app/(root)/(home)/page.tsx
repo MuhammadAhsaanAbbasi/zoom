@@ -1,19 +1,33 @@
 import MeetingList from "@/components/Meeting/MeetingList";
 
 export default function Home() {
-  const now = new Date();
-  const options: Intl.DateTimeFormatOptions = {
-    hour: "2-digit",
-    minute: "2-digit",
-    timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone, // Use system's default time zone
-  };
-  // Convert milliseconds to hours and minutes
-  const timeMilliseconds = now.getTime();
-  const timeInSeconds = timeMilliseconds / 1000; // converting milliseconds to seconds
-  const hours = Math.floor(timeInSeconds / 3600); // calculating hours
-  const minutes = Math.floor((timeInSeconds % 3600) / 60); // calculating minutes
+  const now = new Date(Date.now());
+  const currentTime = new Date();
+  let currentHours = currentTime.getHours();
+  let currentMinutes = currentTime.getMinutes();
   
-  const time = new Intl.DateTimeFormat([], options).format(now);
+  // Adding leading zeros if hours or minutes are less than 10
+  const formatTime = (value: number): string => {
+    return value < 10 ? "0" + value : value.toString();
+  };
+  
+  // Convert 24-hour time to 12-hour time and handle AM/PM
+  let meridiem = "AM";
+  if (currentHours >= 12) {
+    meridiem = "PM";
+    currentHours = currentHours === 12 ? 12 : currentHours - 12;
+  }
+  if (currentHours === 0) {
+    currentHours = 12; // 0 hour corresponds to 12 in 12-hour format
+  }
+  
+  // Formatting hours and minutes
+  const formattedHours = formatTime(currentHours);
+  const formattedMinutes = formatTime(currentMinutes);
+  
+  // Constructing the final time string
+  const time = `${formattedHours}:${formattedMinutes} ${meridiem}`;
+
   const date = new Intl.DateTimeFormat([], {
     weekday: "long",
     year: "numeric",
