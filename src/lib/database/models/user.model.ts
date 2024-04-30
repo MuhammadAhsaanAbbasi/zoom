@@ -26,6 +26,9 @@ const UserSchema = new Schema({
     lastName: {
         type: String,
     },
+    perosonalRoomLink: {
+        type: String,
+    },
 });
 
 const User = models?.User || model("User", UserSchema);
