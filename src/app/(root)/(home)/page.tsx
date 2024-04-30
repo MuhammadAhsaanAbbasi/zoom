@@ -26,7 +26,7 @@ export default function Home() {
   const formattedMinutes = formatTime(currentMinutes);
   
   // Constructing the final time string
-  const time = `${formattedHours}:${formattedMinutes} ${meridiem}`;
+  const time = `${currentHours}:${currentMinutes} ${meridiem}`;
 
   const date = new Intl.DateTimeFormat([], {
     weekday: "long",
