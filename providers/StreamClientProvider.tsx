@@ -5,7 +5,7 @@ import {StreamVideoClient, StreamVideo} from "@stream-io/video-react-sdk"
 const apikey = process.env.NEXT_PUBLIC_STREAM_API_KEY
 
 import React, { useEffect, useState } from 'react'
-import { tokenProvider } from "../actions/stream.actions"
+import { tokenProvider } from "../src/lib/actions/stream.actions"
 import Loader from "@/components/Shared/Loader"
 
 const StreamVideoProvider = ({children}: {children: React.ReactNode}) => {
@@ -22,7 +22,7 @@ const StreamVideoProvider = ({children}: {children: React.ReactNode}) => {
                 name: user?.username || user?.id,
                 image: user?.imageUrl
             },
-            tokenProvider
+            tokenProvider:tokenProvider
         }) 
 
         setVideoClient(client)
