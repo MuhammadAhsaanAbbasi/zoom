@@ -1,32 +1,16 @@
 import MeetingList from "@/components/Meeting/MeetingList";
 
 export default function Home() {
-  const now = new Date(Date.now());
-  const currentTime = new Date();
-  let currentHours = currentTime.getHours();
-  let currentMinutes = currentTime.getMinutes();
+  const now = new Date();
+
+  const timeMilliseconds = now.getTime();
+
+  // Convert MilliSeconds into Seconds and Minutes and Hours
+  const seconds = Math.floor((timeMilliseconds / 1000) % 60);
+  const minutes = now.getMinutes();
+  const hours = now.getHours();
   
-  // Adding leading zeros if hours or minutes are less than 10
-  const formatTime = (value: number): string => {
-    return value < 10 ? "0" + value : value.toString();
-  };
-  
-  // Convert 24-hour time to 12-hour time and handle AM/PM
-  let meridiem = "AM";
-  if (currentHours >= 12) {
-    meridiem = "PM";
-    currentHours = currentHours === 12 ? 12 : currentHours - 12;
-  }
-  if (currentHours === 0) {
-    currentHours = 12; // 0 hour corresponds to 12 in 12-hour format
-  }
-  
-  // Formatting hours and minutes
-  const formattedHours = formatTime(currentHours);
-  const formattedMinutes = formatTime(currentMinutes);
-  
-  // Constructing the final time string
-  const time = `${currentHours}:${currentMinutes} ${meridiem}`;
+  const time = `${hours < 10 ? "0" + hours : hours}:${minutes < 10 ? "0" + minutes : minutes}`;
 
   const date = new Intl.DateTimeFormat([], {
     weekday: "long",
