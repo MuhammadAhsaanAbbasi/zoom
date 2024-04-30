@@ -1,5 +1,4 @@
 import MeetingList from "@/components/Meeting/MeetingList";
-import Image from "next/image";
 
 export default function Home() {
   const now = new Date();
@@ -8,7 +7,7 @@ export default function Home() {
     minute: "2-digit",
     timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone // Use system's default time zone
   };
-  const time = now.toLocaleTimeString([], options);
+  const time = now.getTime()
   const date = new Intl.DateTimeFormat([], {
     weekday: "long",
     year: "numeric",
@@ -16,7 +15,9 @@ export default function Home() {
     day: "numeric",
     timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone // Use system's default time zone
   }).format(now);
+  console.log(time)
   return (
+
     <section className="flex size-full flex-col gap-10">
       <div className="h-[303px] w-full bg-hero bg-cover rounded-[20px]">
         <div className="flex h-full flex-col justify-between lg:p-11 max-md:px-4 max-md:py-6">
