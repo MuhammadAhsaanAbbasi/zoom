@@ -1,17 +1,39 @@
 import MeetingList from "@/components/Meeting/MeetingList";
 
 export default function Home() {
-  const now = new Date();
-
-  const timeMilliseconds = now.getTime();
-
-  // Convert MilliSeconds into Seconds and Minutes and Hours
-  const seconds = Math.floor((timeMilliseconds / 1000) % 60);
-  const minutes = now.getMinutes();
-  const hours = now.getHours();
+  function formatTime(time:number) {
+    return time < 10 ? "0" + time : time;
+  }
   
-  const time = `${hours < 10 ? "0" + hours : hours}:${minutes < 10 ? "0" + minutes : minutes}`;
-
+  // Get the current date and time in UTC
+  const now = new Date();
+  
+  // Get the hours and minutes in UTC
+  const hoursUTC = now.getUTCHours();
+  const minutesUTC = now.getUTCMinutes();
+  
+  // Convert UTC hours to your desired time zone
+  // For example, let's say your desired time zone is GMT+5:30
+  const timeZoneOffset = 5 * 60 + 30; // Offset in minutes
+  let hours = hoursUTC + Math.floor(timeZoneOffset / 60);
+  let minutes = minutesUTC
+  
+  // Adjust hours and minutes for negative values or overflow
+  if (hours < 0) {
+    hours += 24;
+  }
+  if (hours >= 24) {
+    hours -= 24;
+  }
+  
+  // Format hours and minutes with leading zeros
+  const formattedHours = formatTime(hours);
+  const formattedMinutes = formatTime(minutes);
+  
+  // Construct the time string
+  const time = `${formattedHours}:${formattedMinutes}`;
+  
+  console.log("Time in your desired time zone:", time);
   const date = new Intl.DateTimeFormat([], {
     weekday: "long",
     year: "numeric",
