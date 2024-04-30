@@ -8,8 +8,12 @@ export default function Home() {
     timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone, // Use system's default time zone
   };
   // Convert milliseconds to hours and minutes
-  const hoursMinutesFormatter = new Intl.DateTimeFormat([], options);
-  const time = hoursMinutesFormatter.format(now);
+  const timeMilliseconds = now.getTime();
+  const timeInSeconds = timeMilliseconds / 1000; // converting milliseconds to seconds
+  const hours = Math.floor(timeInSeconds / 3600); // calculating hours
+  const minutes = Math.floor((timeInSeconds % 3600) / 60); // calculating minutes
+  
+  const time = new Intl.DateTimeFormat([], options).format(now);
   const date = new Intl.DateTimeFormat([], {
     weekday: "long",
     year: "numeric",
