@@ -3,13 +3,19 @@ import Image from "next/image";
 
 export default function Home() {
   const now = new Date();
-  const time = now.toLocaleTimeString([], {hour: "2-digit", minute: "2-digit"})
-  const date = (new Intl.DateTimeFormat([], {
+  const options: Intl.DateTimeFormatOptions = {
+    hour: "2-digit",
+    minute: "2-digit",
+    timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone // Use system's default time zone
+  };
+  const time = now.toLocaleTimeString([], options);
+  const date = new Intl.DateTimeFormat([], {
     weekday: "long",
     year: "numeric",
     month: "long",
     day: "numeric",
-  })).format(now)
+    timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone // Use system's default time zone
+  }).format(now);
   return (
     <section className="flex size-full flex-col gap-10">
       <div className="h-[303px] w-full bg-hero bg-cover rounded-[20px]">
