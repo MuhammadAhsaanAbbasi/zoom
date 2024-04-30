@@ -30,6 +30,10 @@ const UserSchema = new Schema({
         type: Number,
         default: 1,
     },
+    creditBalance: {
+        type: Number,
+        default: 20,
+    },
 });
 
 const User = models?.User || model("User", UserSchema);

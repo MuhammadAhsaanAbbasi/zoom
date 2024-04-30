@@ -23,4 +23,3 @@ export const tokenProvider = async () => {
 
     return token
 }
-
