@@ -10,6 +10,7 @@ import { Label } from '../ui/label'
 import { Textarea } from '../ui/textarea'
 import ReactDatePicker from "react-datepicker"
 import { Input } from '../ui/input'
+import { addUpcoming } from '@/lib/actions/upcoming.actions'
 
 const MeetingList = () => {
   const router = useRouter()
@@ -27,23 +28,23 @@ const MeetingList = () => {
   const [callDetail, setCallDetail] = useState<Call>();
 
   const CreateMeeting = async () => {
-    if (!client || !user) return
+    if (!client || !user) return;
     try {
       if (!values.dateTime) {
         toast({
           title: "Error",
           description: "Please Select a Date",
-        })
-        return
+        });
+        return;
       }
-
+  
       const id = crypto.randomUUID();
       const call = client.call('default', id);
       if (!call) throw new Error('Failed to create meeting');
-
-      const startsAt = values.dateTime.toISOString() || new Date(Date.now()).toISOString()
-      const description = values.description || "Instant Meeting"
-
+  
+      const startsAt = values.dateTime.toISOString() || new Date(Date.now()).toISOString();
+      const description = values.description || "Instant Meeting";
+  
       await call.getOrCreate({
         data: {
           starts_at: startsAt,
@@ -51,27 +52,51 @@ const MeetingList = () => {
             description,
           }
         },
-      })
-      console.log("call created", call)
+      });
+      console.log("call created", call);
       setCallDetail(call);
-
+  
+      const meetingLink = `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${call.id}`;
+      if (meetingState === "isScheduleMeeting") {
+        const upComingData = {
+          link: meetingLink, // Ensure this is populated
+          description: values.description,
+          date: values.dateTime,
+          call_id: call.id,
+        };
+  
+        try {
+          const newUpcoming = await addUpcoming({
+            upcoming: upComingData,
+            userId: user.id,
+          });
+          if (newUpcoming) {
+            router.refresh();
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      }
+  
       if (!values.description) {
-        router.push(`/meeting/${call.id}/`)
+        router.push(`/meeting/${call.id}/`);
       }
       toast({
         title: "Success",
         description: "Meeting Created",
-      })
-
+      });
+  
     } catch (error) {
-      console.error(error)
+      console.error(error);
       toast({
         title: "Error",
         description: "Something went wrong",
-      })
+      });
     }
-  }
+  };
+
   const meetingLink = `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${callDetail?.id}`
+
   return (
     <section className='grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4'>
       <HomeCard
@@ -170,9 +195,9 @@ const MeetingList = () => {
         handleClick={() => router.push(values.link)}
       >
         <Input
-        placeholder="Write the link here"
-        className='border-none bg-dark-3 focus-visible:ring-0 focus-visible:ring-offset-0'
-        onChange={(e) => setValues({ ...values, link: e.target.value })}
+          placeholder="Write the link here"
+          className='border-none bg-dark-3 focus-visible:ring-0 focus-visible:ring-offset-0'
+          onChange={(e) => setValues({ ...values, link: e.target.value })}
         />
       </MeetingModel>
 

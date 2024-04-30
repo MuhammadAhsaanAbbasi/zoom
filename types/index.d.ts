@@ -16,3 +16,31 @@ declare type UpdateUserParams = {
     username: string;
     photo: string;
 };
+
+
+declare type AddUpcomingParams = {
+    upcoming: {
+        link: string;
+        description: string;
+        date: Date;
+        call_id: string;
+    }
+    userId: string;
+};
+
+
+declare type AddPreviousParams = {
+    previous: {
+        description: string;
+        date: Date;
+    }
+    userId: string;
+};
+
+interface getCallParamas {
+    _id: string
+    date: Date;
+    description?: string;
+    link?: string;
+    call_id?: string;
+}

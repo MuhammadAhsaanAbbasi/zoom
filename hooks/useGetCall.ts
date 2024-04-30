@@ -1,4 +1,6 @@
 "use client"
+import { getUserPrevious } from "@/lib/actions/previous.actions"
+import { getUserUpComing } from "@/lib/actions/upcoming.actions"
 import { useUser } from "@clerk/nextjs"
 import { Call, useStreamVideoClient } from "@stream-io/video-react-sdk"
 import { useEffect, useState } from "react"
@@ -6,6 +8,10 @@ import { useEffect, useState } from "react"
 export const useGetCalls = () => {
     const [calls, setCalls] = useState<Call[]>([])
     const [isLoading, setIsLoading] = useState(false)
+
+    const [endedCalls, setEndedCalls] = useState<getCallParamas[] | undefined>()
+
+    const [upcomingCalls, setUpcomingCalls] = useState<getCallParamas[] | undefined>()
 
     const client = useStreamVideoClient();
     const { user } = useUser();
@@ -27,6 +33,13 @@ export const useGetCalls = () => {
                 }
                 })
             setCalls(calls)
+
+            const previous = await getUserPrevious(user?.id)
+            console.log(previous?.data)
+            setEndedCalls(previous?.data)
+            const upcoming = await getUserUpComing(user?.id)
+            console.log(upcoming?.data)
+            setUpcomingCalls(upcoming?.data)
             } catch (error) {
                 console.error(error)
             }finally {
@@ -35,15 +48,6 @@ export const useGetCalls = () => {
         }
         LoadCalls()
     }, [client, user?.id])
-
-    const now = new Date()
-    const endedCalls = calls.filter(({state: {startsAt, endedAt}}: Call) => {
-        return (startsAt && new Date(startsAt) < now || !!endedAt)
-    })
-
-    const upcomingCalls = calls.filter(({state: {startsAt}}: Call) => {
-        return (startsAt && new Date(startsAt) > now)
-    })
 
     return {
         endedCalls,

@@ -6,15 +6,18 @@ import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
 import { avatarImages } from "../../../constants";
 import { useToast } from "../ui/use-toast";
+import { Delete, Trash2 } from "lucide-react";
 
 interface MeetingCardProps {
   title: string;
   date: string;
   icon: string;
   isPreviousMeeting?: boolean;
+  isRecordings?: boolean;
   buttonIcon1?: string;
   buttonText?: string;
   handleClick: () => void;
+  deleteClick: () => void;
   link: string;
 }
 
@@ -23,8 +26,10 @@ const MeetingCard = ({
   title,
   date,
   isPreviousMeeting,
+  isRecordings,
   buttonIcon1,
   handleClick,
+  deleteClick,
   link,
   buttonText,
 }: MeetingCardProps) => {
@@ -33,7 +38,16 @@ const MeetingCard = ({
   return (
     <section className="flex min-h-[258px] w-full flex-col justify-between rounded-[14px] bg-dark-2 px-5 py-8 xl:max-w-[568px]">
       <article className="flex flex-col gap-5">
+        <div className="flex justify-between items-center gap-2">
         <Image src={icon} alt="upcoming" width={28} height={28} />
+        {!isRecordings && (
+        <Button className="bg-dark-3" 
+        onClick={deleteClick}
+        >
+          <Trash2 className="text-2xl font-normal text-blue-1" size={25} />
+          </Button>
+        )}
+        </div>
         <div className="flex justify-between">
           <div className="flex flex-col gap-2">
             <h1 className="text-2xl font-bold">{title}</h1>
