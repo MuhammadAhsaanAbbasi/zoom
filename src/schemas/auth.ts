@@ -7,11 +7,8 @@ export const RegisterSchema = z.object({
     lastname: z.string().min(3, {
         message: "Last name must be at least 3 characters long.",
     }),
-    dob: z.string({
-        required_error: "Date of birth is required.",
-    }),
-    gender: z.string().min(4, {
-        message: "Gender must be at least 4 characters long.",
+    username: z.string().min(6, {
+        message: "Username must be at least 6 characters long.",
     }),
     email: z.string().email({
         message: "Please provide a valid email address.",

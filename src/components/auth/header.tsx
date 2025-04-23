@@ -18,11 +18,11 @@ export const AuthHeader = ({
     return (
         <div className="w-full flex flex-col gap-y-4 items-center justify-center">
             <Image
-                src="https://hrk-boutique.s3.ap-south-1.amazonaws.com/emailTemplate/hrk_boutique.png"
+                src="/icons/logo.svg"
                 alt="logo"
-                width={120}
-                height={150}
-                className="w-20 h-auto md:w-auto"
+                width={80}
+                height={80}
+                className="w-14 h-14 object-contain"
             />
             <p className="text-base">
                 {label}

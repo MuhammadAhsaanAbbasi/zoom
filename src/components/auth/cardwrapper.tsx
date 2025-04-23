@@ -20,7 +20,7 @@ export const CardWrapper = (
     }: CardwrapperProps
 ) => {
     return (
-        <Card className='w-[500px] shadow-md bg-white/30 backdrop-blur-md rounded-xl border border-white/20 text-black'>
+        <Card className='w-[400px] shadow-md bg-[#1C1F2E] backdrop-blur-md rounded-xl border border-[#0E78F9] text-[#fff] h-full font-'>
             <CardHeader>
                 <AuthHeader label={headerlabels} />
             </CardHeader>

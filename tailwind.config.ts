@@ -60,6 +60,9 @@ const config = {
       backgroundImage: {
         hero: "url('/images/hero-background.png')",
       },
+      fontFamily: {
+        inter: ['var(--font-inter)'],
+      },
     },
   },
   plugins: [require('tailwindcss-animate')],

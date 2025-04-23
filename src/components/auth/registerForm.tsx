@@ -39,8 +39,7 @@ export const RegisterForm = () => {
         defaultValues: {
             firstname: "",
             lastname: "",
-            dob: new Date(Date.now()).toISOString().split('T')[0],
-            gender: "male",
+            username: "",
             email: "",
             password: "",
             confirmPassword: ""
@@ -97,7 +96,7 @@ export const RegisterForm = () => {
                             name="firstname"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>
+                                    <FormLabel className='text-[13px]'>
                                         First name
                                     </FormLabel>
                                     <FormControl>
@@ -105,6 +104,7 @@ export const RegisterForm = () => {
                                             {...field}
                                             disabled={isPending}
                                             placeholder='John'
+                                            className='auth_input'
                                         />
                                     </FormControl>
                                     <FormMessage />
@@ -124,6 +124,7 @@ export const RegisterForm = () => {
                                             {...field}
                                             disabled={isPending}
                                             placeholder='Doe'
+                                            className='auth_input'
                                         />
                                     </FormControl>
                                     <FormMessage />
@@ -131,7 +132,7 @@ export const RegisterForm = () => {
                             )}
                         />
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 justify-center w-full gap-4">
+                    {/* <div className="grid grid-cols-1 md:grid-cols-2 justify-center w-full gap-4">
                         <FormField
                             control={form.control}
                             name="dob"
@@ -182,7 +183,28 @@ export const RegisterForm = () => {
                                 </FormItem>
                             )}
                         />
-                    </div>
+                    </div> */}
+                    <FormField
+                        control={form.control}
+                        name="username"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>
+                                    UserName
+                                </FormLabel>
+                                <FormControl>
+                                    <Input
+                                        {...field}
+                                        disabled={isPending}
+                                        placeholder='john.doe@gmail.com'
+                                        type="email"
+                                        className='auth_input'
+                                    />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
                     <FormField
                         control={form.control}
                         name="email"
@@ -197,6 +219,7 @@ export const RegisterForm = () => {
                                         disabled={isPending}
                                         placeholder='john.doe@gmail.com'
                                         type="email"
+                                        className='auth_input'
                                     />
                                 </FormControl>
                                 <FormMessage />
@@ -217,6 +240,7 @@ export const RegisterForm = () => {
                                         disabled={isPending}
                                         placeholder='*********'
                                         type='password'
+                                        className='auth_input'
                                     />
                                 </FormControl>
                                 <FormMessage />
@@ -237,6 +261,7 @@ export const RegisterForm = () => {
                                         disabled={isPending}
                                         placeholder='*********'
                                         type="password"
+                                        className='auth_input'
                                     />
                                 </FormControl>
                                 <FormMessage />
@@ -249,7 +274,7 @@ export const RegisterForm = () => {
 
                     <Button
                         // disabled={isPending}
-                        type="submit" className='w-full'>
+                        type="submit" className='w-full bg-blue-1'>
                         Create an Account
                         <BottomGradient />
                     </Button>

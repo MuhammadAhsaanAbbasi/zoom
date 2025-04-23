@@ -77,7 +77,7 @@ export const LoginForm = () => {
             {...form}
         >
             <CardWrapper
-                headerlabels='Welcome Back in HRK Boutique'
+                headerlabels='Welcome Back in LOOM'
                 backButtonLabel="Don't Have an Account?"
                 backButtonhref='/register'
             >
@@ -98,6 +98,7 @@ export const LoginForm = () => {
                                         disabled={isPending}
                                         placeholder='john.doe@gmail.com'
                                         type="email"
+                                        className='auth_input'
                                     />
                                 </FormControl>
                                 <FormMessage />
@@ -109,7 +110,7 @@ export const LoginForm = () => {
                         name="password"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>
+                                <FormLabel className='text-sm font-extralight'>
                                     Password
                                 </FormLabel>
                                 <FormControl>
@@ -118,16 +119,9 @@ export const LoginForm = () => {
                                         disabled={isPending}
                                         placeholder='*********'
                                         type='password'
+                                        className='auth_input'
                                     />
                                 </FormControl>
-                                <Button
-                                    size="sm"
-                                    variant="link"
-                                    asChild
-                                    className="px-0 font-normal"
-                                >
-                                    <Link href="/auth/reset-password">Forgot password?</Link>
-                                </Button>
                                 <FormMessage />
                             </FormItem>
                         )}
@@ -138,9 +132,9 @@ export const LoginForm = () => {
 
                     <Button
                         // disabled={isPending}
-                        type="submit" className='w-full'>
+                        type="submit" className='w-full bg-blue-1'>
                         Login
-                        <BottomGradient />
+                        {/* <BottomGradient /> */}
                     </Button>
 
                 </form>
