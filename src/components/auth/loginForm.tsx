@@ -79,7 +79,7 @@ export const LoginForm = () => {
             <CardWrapper
                 headerlabels='Welcome Back in HRK Boutique'
                 backButtonLabel="Don't Have an Account?"
-                backButtonhref='/auth/register'
+                backButtonhref='/register'
             >
                 <form className="flex flex-col justify-center gap-4"
                     onSubmit={form.handleSubmit(onSubmit)}
