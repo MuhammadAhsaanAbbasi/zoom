@@ -1,6 +1,15 @@
+import { Metadata } from 'next';
 import React from 'react'
 
-const Layout = ({ children }: { children: React.ReactNode }) => {
+export const metadata: Metadata = {
+  title: "LOOM",
+  description: "Video calling App",
+  icons: {
+    icon: "/icons/logo.svg",
+  },
+};
+
+const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <main className="flex h-screen w-full items-center justify-center">
       {children}
@@ -8,4 +17,4 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-export default Layout
+export default AuthLayout;
