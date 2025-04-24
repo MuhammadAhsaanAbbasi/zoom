@@ -12,19 +12,12 @@ import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/
 import { Button } from '../ui/button';
 import { useRouter } from 'next/navigation';
 import { ToastAction } from '../ui/toast';
-import { toast } from '@/components/ui/use-toast'
-// import { PhoneInput } from 'react-international-phone';
-import { FcGoogle } from "react-icons/fc";
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select"
+import { toast } from '@/components/ui/use-toast';
 import { FormError } from '@/components/shared/FormError';
 import { FormSuccess } from '@/components/shared/FormSucess';
-import GoogleAuth from './googleauth';
+import { FcGoogle } from "react-icons/fc";
+import { FaGithub } from "react-icons/fa";
+import SocialAuth from './socialauth';
 // import { register } from '@/global-actions/auth';
 
 
@@ -281,8 +274,9 @@ export const RegisterForm = () => {
 
                 </form>
                 <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" />
-                <div className="flex flex-col space-y-4">
-                    <GoogleAuth />
+                <div className="flex items-center justify-center gap-4">
+                    <SocialAuth text='Google' icon={FcGoogle} />
+                    <SocialAuth text='Github' icon={FaGithub} />
                 </div>
             </CardWrapper>
         </FormProvider>

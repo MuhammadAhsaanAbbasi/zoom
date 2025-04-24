@@ -2,19 +2,19 @@ import React from 'react'
 import { FcGoogle } from 'react-icons/fc';
 import { Button } from '../ui/button';
 
-const GoogleAuth = () => {
+const SocialAuth = ({text, icon}: {text: string, icon: React.ElementType}) => {
     return (
         <Button variant="outline" className=" relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]">
-            <FcGoogle size={20} />
+            {icon ? React.createElement(icon, { size: 20 }) : <FcGoogle size={20} />}
             <span className="text-neutral-700 dark:text-neutral-300 text-lg">
-                Google
+                {text}
             </span>
             <BottomGradient />
         </Button>
     )
 }
 
-export default GoogleAuth
+export default SocialAuth;
 
 const BottomGradient = () => {
     return (
